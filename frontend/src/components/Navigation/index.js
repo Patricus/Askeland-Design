@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton.js";
+import LogoTitle from "./LogoTitle.js";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -19,21 +20,26 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink to="/">Home Page</NavLink>
-            </li>
-            <li>
-                <NavLink to="/projects">Project</NavLink>
-            </li>
-            <li>
-                <NavLink to="/contracting">Contracting</NavLink>
-            </li>
-            <li>
-                <NavLink to="/contact">Contact</NavLink>
-            </li>
-            {isLoaded && sessionLinks}
-        </ul>
+        <section>
+            <LogoTitle />
+            <nav>
+                <ul>
+                    <li>
+                        <NavLink to="/">Home Page</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/projects">Projects</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contracting">Contracting</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact">Contact</NavLink>
+                    </li>
+                    {isLoaded && sessionLinks}
+                </ul>
+            </nav>
+        </section>
     );
 }
 

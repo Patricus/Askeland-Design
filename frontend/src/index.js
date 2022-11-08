@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot, render } from "react-dom/client";
 import "./index.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -19,19 +19,14 @@ if (process.env.NODE_ENV !== "production") {
     window.sessionActions = sessionActions;
 }
 
-function Root() {
-    return (
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+    <React.StrictMode>
         <Provider store={store}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
         </Provider>
-    );
-}
-
-ReactDOM.render(
-    <React.StrictMode>
-        <Root />
-    </React.StrictMode>,
-    document.getElementById("root")
+    </React.StrictMode>
 );

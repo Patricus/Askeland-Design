@@ -21,24 +21,16 @@ function Navigation({ isLoaded }) {
     return (
         <ul>
             <li>
-                <NavLink exact to="/">
-                    Home Page
-                </NavLink>
+                <NavLink to="/">Home Page</NavLink>
             </li>
             <li>
-                <NavLink exact to="/projects">
-                    Project
-                </NavLink>
+                <NavLink to="/projects">Project</NavLink>
             </li>
             <li>
-                <NavLink exact to="/contracting">
-                    Contracting
-                </NavLink>
+                <NavLink to="/contracting">Contracting</NavLink>
             </li>
             <li>
-                <NavLink exact to="/contact">
-                    Contact
-                </NavLink>
+                <NavLink to="/contact">Contact</NavLink>
             </li>
             {isLoaded && sessionLinks}
         </ul>

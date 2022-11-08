@@ -68,10 +68,10 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
-    User.login = async function ({ credential, password }) {
+    User.login = async function ({ email, password }) {
         const user = await User.scope("loginUser").findOne({
             where: {
-                email: credential,
+                email,
             },
         });
         if (user && user.validatePassword(password)) {

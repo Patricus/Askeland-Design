@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define(
         "User",
         {
-            username: {
+            name: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
-                    len: [3, 30],
+                    len: [2, 30],
                     isNotEmail(value) {
                         if (Validator.isEmail(value)) {
                             throw new Error("Cannot be an email.");
@@ -52,8 +52,8 @@ module.exports = (sequelize, DataTypes) => {
 
     User.prototype.toSafeObject = function () {
         // remember, this cannot be an arrow function
-        const { id, username, email } = this; // context will be the User instance
-        return { id, username, email };
+        const { id, name, email } = this; // context will be the User instance
+        return { id, name, email };
     };
 
     User.prototype.validatePassword = function (password) {
@@ -79,10 +79,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
 
-    User.signup = async function ({ username, email, password }) {
+    User.signup = async function ({ name, email, password }) {
         const hashedPassword = bcrypt.hashSync(password);
         const user = await User.create({
-            username,
+            name,
             email,
             hashedPassword,
         });

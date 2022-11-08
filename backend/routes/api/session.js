@@ -9,7 +9,7 @@ const { User } = require("../../db/models");
 const router = express.Router();
 
 const validateLogin = [
-    check("credential")
+    check("email")
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage("Please provide a valid email."),

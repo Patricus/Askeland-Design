@@ -12,10 +12,9 @@ function Navigation({ isLoaded }) {
         sessionLinks = <ProfileButton user={sessionUser} />;
     } else {
         sessionLinks = (
-            <>
+            <li>
                 <NavLink to="/login">Log In</NavLink>
-                {/* <NavLink to="/signup">Sign Up</NavLink> */}
-            </>
+            </li>
         );
     }
 
@@ -23,10 +22,25 @@ function Navigation({ isLoaded }) {
         <ul>
             <li>
                 <NavLink exact to="/">
-                    Home
+                    Home Page
                 </NavLink>
-                {isLoaded && sessionLinks}
             </li>
+            <li>
+                <NavLink exact to="/projects">
+                    Project
+                </NavLink>
+            </li>
+            <li>
+                <NavLink exact to="/contracting">
+                    Contracting
+                </NavLink>
+            </li>
+            <li>
+                <NavLink exact to="/contact">
+                    Contact
+                </NavLink>
+            </li>
+            {isLoaded && sessionLinks}
         </ul>
     );
 }

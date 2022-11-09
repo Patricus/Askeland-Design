@@ -31,14 +31,20 @@ export const getProjects = () => async dispatch => {
     return response;
 };
 
-const initialState = { user: null };
-
-const projectReducer = (state = initialState, action) => {
-    switch (action.type) {
+const projectReducer = (state = {}, { type, payload }) => {
+    switch (type) {
         case GET_PROJECT:
-            return [...state, action.payload];
+            const projectState = { ...state };
+            projectState[payload.id] = payload;
+            return projectState;
+
         case GET_PROJECTS:
-            return [...state, action.payload];
+            const projects = {};
+            payload.forEach(project => {
+                projects[project.id] = project;
+            });
+            return projects;
+
         default:
             return state;
     }

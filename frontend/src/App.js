@@ -5,13 +5,16 @@ import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import { getProjects } from "./store/projects";
 
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+        dispatch(getProjects())
+            .then(dispatch(sessionActions.restoreUser()))
+            .then(() => setIsLoaded(true));
     }, [dispatch]);
 
     return (

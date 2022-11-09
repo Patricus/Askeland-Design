@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
     window.sessionActions = sessionActions;
 }
 
-const root = createRoot(document.querySelector("body"));
+const root = createRoot(document.querySelector("#root"));
 
 root.render(
     <React.StrictMode>

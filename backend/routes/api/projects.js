@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { Project } = require("../../db/models");
+const { Project, Article } = require("../../db/models");
 const { Op } = require("sequelize");
 
 const router = express.Router();
@@ -33,7 +33,16 @@ router.get(
     asyncHandler(async (req, res, next) => {
         const id = req.params.projectId;
 
-        const project = await Project.findByPk(id);
+        const project = await Project.findOne({
+            where: {
+                id,
+            },
+            include: [
+                {
+                    model: Article,
+                },
+            ],
+        });
 
         if (!project) {
             const err = new Error("Project not found");

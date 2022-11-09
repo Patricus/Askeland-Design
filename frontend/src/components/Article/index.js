@@ -5,7 +5,7 @@ function Article({ article }) {
     return (
         <article>
             <div>{text}</div>
-            <div>{image_link}</div>
+            <img src={image_link} alt="" />
         </article>
     );
 }

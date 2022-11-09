@@ -35,6 +35,12 @@ const projectReducer = (state = {}, { type, payload }) => {
     switch (type) {
         case GET_PROJECT:
             const projectState = { ...state };
+            const { Articles: articles } = payload;
+            payload.articles = {};
+            articles.forEach(article => {
+                payload.articles[article.id] = article;
+            });
+            delete payload.Articles;
             projectState[payload.id] = payload;
             return projectState;
 

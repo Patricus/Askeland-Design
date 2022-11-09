@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage";
 
 function App() {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function App() {
             {isLoaded && (
                 <Routes>
                     <Route path="/login" element={<LoginFormPage />} />
-                    <Route path="/" element={`Home`} />
+                    <Route path="/" element={<HomePage />} />
                 </Routes>
             )}
         </>

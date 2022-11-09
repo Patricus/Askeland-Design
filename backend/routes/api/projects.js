@@ -13,13 +13,7 @@ const router = express.Router();
 router.get(
     "/",
     asyncHandler(async (req, res) => {
-        const projects = await Project.findAll({
-            where: {
-                id: {
-                    [Op.not]: [1],
-                },
-            },
-        });
+        const projects = await Project.findAll();
 
         return res.json({
             projects,

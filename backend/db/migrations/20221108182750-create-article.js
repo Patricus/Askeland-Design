@@ -10,6 +10,10 @@ module.exports = {
             },
             project_id: {
                 type: Sequelize.INTEGER,
+                references: {
+                    model: "Projects",
+                    key: "id",
+                },
             },
             text: {
                 type: Sequelize.TEXT,
@@ -20,10 +24,12 @@ module.exports = {
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
+                defaultValue: Sequelize.fn("now"),
             },
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
+                defaultValue: Sequelize.fn("now"),
             },
         });
     },

@@ -6,7 +6,13 @@ function Project({ title, date, articles }) {
         <section>
             <article>
                 <h2>{title}</h2>
-                <p>{date}</p>
+                <p>
+                    {new Date(date).toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    })}
+                </p>
             </article>
             {articles &&
                 Object.values(articles).map(article => {

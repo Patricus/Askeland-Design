@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProject } from "../../store/projects";
 import Article from "../Article";
 
 function ProjectDetails() {
     const { projectId } = useParams();
-    const dispatch = useDispatch();
 
     const project = useSelector(state => state.projects[projectId]);
-
-    useEffect(() => {
-        dispatch(getProject(projectId));
-    }, [dispatch, projectId]);
 
     return (
         <section>

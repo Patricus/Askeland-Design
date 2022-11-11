@@ -13,7 +13,14 @@ const router = express.Router();
 router.get(
     "/",
     asyncHandler(async (req, res) => {
-        const projects = await Project.findAll();
+        const projects = await Project.findAll({
+            include: [
+                {
+                    model: Article,
+                    as: "articles",
+                },
+            ],
+        });
 
         return res.json({
             projects,
@@ -21,34 +28,4 @@ router.get(
     })
 );
 
-//Get specific project and it's articles
-router.get(
-    "/:projectId",
-    asyncHandler(async (req, res, next) => {
-        const id = req.params.projectId;
-
-        const project = await Project.findOne({
-            where: {
-                id,
-            },
-            include: [
-                {
-                    model: Article,
-                },
-            ],
-        });
-
-        if (!project) {
-            const err = new Error("Project not found");
-            err.status = 401;
-            err.title = "Project not found";
-            err.errors = ["The requested project doesn't exist."];
-            return next(err);
-        }
-
-        return res.json({
-            project,
-        });
-    })
-);
 module.exports = router;

@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProject } from "../../store/projects";
+import React from "react";
+import { useSelector } from "react-redux";
 import Article from "../Article";
 
 function HomePage() {
     const { title, articles } = useSelector(state => state.projects[1]);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getProject(1));
-    }, [dispatch]);
 
     return (
         <section>

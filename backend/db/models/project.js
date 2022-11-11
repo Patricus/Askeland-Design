@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Project.hasMany(models.Article, {
+                as: "articles",
                 foreignKey: "project_id",
                 onDelete: "cascade",
                 hooks: true,

@@ -14,8 +14,9 @@ function App() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        dispatch(getProjects());
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+        dispatch(getProjects())
+            .then(dispatch(sessionActions.restoreUser()))
+            .then(() => setIsLoaded(true));
     }, [dispatch]);
 
     return (

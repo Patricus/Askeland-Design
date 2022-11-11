@@ -4,3 +4,29 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+#root {
+    background-color: white;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#root > :not(.sidebar) {
+    margin-left: 20vw;
+}
+
+img {
+    max-width: 99vw;
+    width: 100%;
+}
+
+@media (max-width: 880px) {
+    .sidebar {
+        display: none;
+    }
+    #root > :not(.sidebar) {
+        margin-left: 0;
+    }
+}

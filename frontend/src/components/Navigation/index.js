@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <section>
+        <section className="sidebar">
             <LogoTitle />
             <nav>
                 <ul>

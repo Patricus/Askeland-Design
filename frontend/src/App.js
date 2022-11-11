@@ -7,15 +7,15 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import { getProjects } from "./store/projects";
 import ProjectsPage from "./components/ProjectsPage";
+import ProjectDetails from "./components/ProjectDetails";
 
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        dispatch(getProjects())
-            .then(dispatch(sessionActions.restoreUser()))
-            .then(() => setIsLoaded(true));
+        dispatch(getProjects());
+        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     }, [dispatch]);
 
     return (
@@ -26,6 +26,7 @@ function App() {
                     <Route path="/login" element={<LoginFormPage />} />
                     <Route path="/" element={<HomePage />} />
                     <Route path="/projects" element={<ProjectsPage />} />
+                    <Route path="/projects/:projectId" element={<ProjectDetails />} />
                 </Routes>
             )}
         </>

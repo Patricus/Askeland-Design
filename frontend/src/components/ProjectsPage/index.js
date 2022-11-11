@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProjects } from "../../store/projects";
-import Project from "../Project";
+import ProjectTile from "../ProjectTile";
 
 function ProjectsPage() {
     const projects = useSelector(state => state.projects);
@@ -17,7 +17,7 @@ function ProjectsPage() {
                 Object.values(projects)
                     .slice(1)
                     .map(project => {
-                        return <Project {...project} key={project.id} />;
+                        return <ProjectTile {...project} key={project.id} />;
                     })}
         </section>
     );

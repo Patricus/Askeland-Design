@@ -10,11 +10,10 @@ body {
     margin: 0;
     display: flex;
     min-height: 100vh;
-    overflow: hidden;
 }
 
 #root > :not(.sidebar) {
-    margin-left: 20vw;
+    margin-top: 10px;
 }
 
 img {
@@ -23,10 +22,10 @@ img {
 }
 
 @media (max-width: 880px) {
-    .sidebar {
-        display: none;
+    #root {
+        flex-direction: column;
     }
     #root > :not(.sidebar) {
-        margin-left: 0;
+        margin-left: 10px;
     }
 }

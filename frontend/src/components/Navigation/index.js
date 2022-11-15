@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton.js";
 import LogoTitle from "./LogoTitle.js";
 import "./Navigation.css";
+import MobileMenu from "./MobileMenu.js";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -21,24 +22,27 @@ function Navigation({ isLoaded }) {
 
     return (
         <section className="sidebar">
-            <LogoTitle />
-            <nav>
-                <ul>
-                    <li>
-                        <NavLink to="/">Home Page</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/projects">Projects</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contracting">Contracting</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact">Contact</NavLink>
-                    </li>
-                    {isLoaded && sessionLinks}
-                </ul>
-            </nav>
+            <article className="slider">
+                <LogoTitle />
+                <nav>
+                    <ul>
+                        <li>
+                            <NavLink to="/">Home Page</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/projects">Projects</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contracting">Contracting</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact">Contact</NavLink>
+                        </li>
+                        {isLoaded && sessionLinks}
+                    </ul>
+                </nav>
+                <MobileMenu />
+            </article>
         </section>
     );
 }

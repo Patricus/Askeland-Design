@@ -7,13 +7,14 @@ body {
 
 #root {
     background-color: white;
-    margin: 0;
     display: flex;
     min-height: 100vh;
 }
 
 #root > :not(.sidebar) {
     margin-top: 10px;
+    max-width: 1080px;
+    margin-left: 10px;
 }
 
 img {
@@ -24,8 +25,5 @@ img {
 @media (max-width: 880px) {
     #root {
         flex-direction: column;
-    }
-    #root > :not(.sidebar) {
-        margin-left: 10px;
     }
 }

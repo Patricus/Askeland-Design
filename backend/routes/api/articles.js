@@ -9,71 +9,54 @@ const { Op } = require("sequelize");
 
 const router = express.Router();
 
-//Get all projects
-router.get(
-    "/",
-    asyncHandler(async (req, res) => {
-        const projects = await Project.findAll({
-            include: [
-                {
-                    model: Article,
-                    as: "articles",
-                },
-            ],
-        });
-
-        return res.json({
-            projects,
-        });
-    })
-);
-
-//Add a project
+//Add a article
 router.post(
     "/",
     requireAuth,
     asyncHandler(async (req, res) => {
-        const { title, date } = req.body;
+        const { projectId, text, image_link } = req.body;
 
-        const project = await Project.create({
-            title,
-            date,
+        const article = await Article.create({
+            projectId,
+            text,
+            image_link,
         });
 
-        return res.json(project);
+        return res.json(article);
     })
 );
 
-//Update a project
+//Update a article
 router.put(
     "/:id",
     requireAuth,
     asyncHandler(async (req, res) => {
         const id = req.params.id;
-        const { title, date } = req.body;
+        const { text, image_link } = req.body;
 
-        const project = await Project.findOne({
+        const article = await Article.findOne({
             where: {
                 id,
             },
         });
 
-        await project.update({
-            title,
+        await article.update({
+            text,
+            image_link,
         });
 
-        return res.json(project);
+        return res.json(article);
     })
 );
 
-//Delete a project
+//Delete a article
 router.delete(
     "/:id",
     requireAuth,
     asyncHandler(async (req, res) => {
         const id = req.params.id;
 
-        Project.destroy({
+        Article.destroy({
             where: {
                 id,
             },

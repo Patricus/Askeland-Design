@@ -29,20 +29,18 @@ function HomePage() {
         <section>
             <article>
                 {editWelcome ? (
-                    <h1>
-                        <input
-                            type="text"
-                            value={editTitle}
-                            onChange={e => setEditTitle(e.target.value)}
-                        />
-                    </h1>
+                    <input
+                        type="text"
+                        value={editTitle}
+                        onChange={e => setEditTitle(e.target.value)}
+                    />
                 ) : (
                     <h2>{title}</h2>
                 )}
             </article>
             {articles &&
                 Object.values(articles).map(article => {
-                    return <Article article={article} key={article.id} />;
+                    return <Article edit={editWelcome} article={article} key={article.id} />;
                 })}
             {user && <button onClick={toggleEdit}>{editWelcome ? "Save" : "Edit"}</button>}
         </section>

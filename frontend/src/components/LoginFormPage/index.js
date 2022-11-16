@@ -23,6 +23,17 @@ function LoginFormPage() {
         });
     };
 
+    const quickLog = e => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(
+            sessionActions.login({ email: "Askeland.Eric@gmail.com", password: "password" })
+        ).catch(async res => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        });
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <ul>
@@ -49,6 +60,9 @@ function LoginFormPage() {
                 />
             </label>
             <button type="submit">Log In</button>
+            <button type="button" onClick={quickLog}>
+                Quick Log
+            </button>
         </form>
     );
 }

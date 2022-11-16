@@ -1,17 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import ProfileButton from "./ProfileButton.js";
+import { useDispatch, useSelector } from "react-redux";
+import * as sessionActions from "../../store/session";
 import LogoTitle from "./LogoTitle.js";
 import "./Navigation.css";
 import MobileMenu from "./MobileMenu.js";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
+
+    const logout = e => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+    };
 
     let sessionLinks;
     if (sessionUser) {
-        sessionLinks = <ProfileButton user={sessionUser} />;
+        sessionLinks = <button onClick={logout}>Log Out</button>;
     } else {
         sessionLinks = (
             <li>

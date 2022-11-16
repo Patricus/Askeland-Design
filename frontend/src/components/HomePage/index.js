@@ -1,19 +1,48 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Article from "../Article";
 
 function HomePage() {
+    const dispatch = useDispatch();
+
     const { title, articles } = useSelector(state => state.projects[1]);
+    const user = useSelector(state => state.session.user);
+
+    const [editWelcome, setEditWelcome] = useState(false);
+    const [editTitle, setEditTitle] = useState(title);
+
+    const toggleEdit = () => {
+        if (editWelcome) {
+            //save
+        }
+
+        setEditWelcome(() => !editWelcome);
+    };
+
+    useEffect(() => {
+        setEditTitle(title);
+    }, [title]);
 
     return (
         <section>
             <article>
-                <h2>{title}</h2>
+                {editWelcome ? (
+                    <h1>
+                        <input
+                            type="text"
+                            value={editTitle}
+                            onChange={e => setEditTitle(e.target.value)}
+                        />
+                    </h1>
+                ) : (
+                    <h2>{title}</h2>
+                )}
             </article>
             {articles &&
                 Object.values(articles).map(article => {
                     return <Article article={article} key={article.id} />;
                 })}
+            {user && <button onClick={toggleEdit}>{editWelcome ? "Save" : "Edit"}</button>}
         </section>
     );
 }

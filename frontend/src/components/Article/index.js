@@ -8,8 +8,9 @@ function Article({ edit, article }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!edit) dispatch(updateArticle({ id, editText, image_link }));
+        if (!edit) dispatch(updateArticle({ id, text: editText, image_link }));
     }, [edit]);
+
     return (
         <article>
             {image_link && <img src={image_link} alt="" />}

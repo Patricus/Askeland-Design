@@ -28,4 +28,57 @@ router.get(
     })
 );
 
+//Add a project
+router.post(
+    "/",
+    asyncHandler(async (req, res) => {
+        const { title, date } = req.body;
+
+        const project = await Project.create({
+            title,
+            date,
+        });
+
+        return res.json(project);
+    })
+);
+
+//Update a project
+router.put(
+    "/:id",
+    asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const { title, date } = req.body;
+
+        const project = await Project.findOne({
+            where: {
+                id,
+            },
+        });
+
+        if (project) {
+            project.title = title;
+            project.date = date;
+
+            return res.json(project);
+        }
+    })
+);
+
+//Delete a project
+router.delete(
+    "/:id",
+    asyncHandler(async (req, res) => {
+        const id = req.params.id;
+
+        Project.destroy({
+            where: {
+                id,
+            },
+        });
+
+        return res.status(200);
+    })
+);
+
 module.exports = router;

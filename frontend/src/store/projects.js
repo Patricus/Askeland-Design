@@ -2,8 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_PROJECTS = "projects/getProjects";
 const NEW_PROJECT = "projects/newProject";
-const UPDATE_PROJECT = "project/editProject";
-const DELETE_PROJECT = "project/deleteProject";
+const UPDATE_PROJECT = "projects/editProject";
+const DELETE_PROJECT = "projects/deleteProject";
 
 const storeProjects = projects => {
     return {

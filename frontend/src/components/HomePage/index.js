@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateProject } from "../../store/projects";
 import Article from "../Article";
 
 function HomePage() {
@@ -14,6 +15,7 @@ function HomePage() {
     const toggleEdit = () => {
         if (editWelcome) {
             //save
+            dispatch(updateProject({ id: 1, title: editTitle }));
         }
 
         setEditWelcome(() => !editWelcome);

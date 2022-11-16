@@ -63,7 +63,7 @@ export const createProject = project => async dispatch => {
     }
 };
 
-export const editProject = project => async dispatch => {
+export const updateProject = project => async dispatch => {
     const res = await csrfFetch(`/api/projects/${project.id}/`, {
         method: "PUT",
         headers: {
@@ -126,7 +126,9 @@ const projectReducer = (state = {}, { type, payload }) => {
 
         case UPDATE_PROJECT:
             const updateProjState = { ...state };
+            const articles = updateProjState[payload.id].articles;
             updateProjState[payload.id] = payload;
+            updateProjState[payload.id].articles = articles;
             return updateProjState;
 
         case DELETE_PROJECT:

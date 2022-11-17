@@ -5,6 +5,7 @@ import ProjectTile from "../ProjectTile";
 
 function ProjectsPage() {
     const projects = useSelector(state => state.projects);
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     useEffect(() => {

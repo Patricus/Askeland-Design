@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createArticle } from "../../store/articles";
 import { updateProject } from "../../store/projects";
+import { toggleEdit } from "../../store/editToggle";
 import Article from "../Article";
 
 function HomePage() {
@@ -11,16 +12,16 @@ function HomePage() {
     const articles = useSelector(state => state.projects[1].articles);
     const user = useSelector(state => state.session.user);
 
-    const [editWelcome, setEditWelcome] = useState(false);
+    const editMode = useSelector(state => state.edit);
     const [editTitle, setEditTitle] = useState(title);
 
-    const toggleEdit = () => {
-        if (editWelcome) {
+    const toggleEditMode = () => {
+        if (editMode) {
             //save
             dispatch(updateProject({ id: 1, title: editTitle }));
         }
 
-        setEditWelcome(() => !editWelcome);
+        dispatch(toggleEdit());
     };
 
     const addArticle = () => {
@@ -28,7 +29,7 @@ function HomePage() {
     };
 
     useEffect(() => {
-        if (editWelcome) toggleEdit();
+        if (editMode) dispatch(toggleEdit());
     }, [user]);
 
     useEffect(() => {
@@ -38,7 +39,7 @@ function HomePage() {
     return (
         <section>
             <article>
-                {editWelcome ? (
+                {editMode ? (
                     <input
                         type="text"
                         value={editTitle}
@@ -50,10 +51,10 @@ function HomePage() {
             </article>
             {articles &&
                 Object.values(articles).map(article => {
-                    return <Article edit={editWelcome} article={article} key={article.id} />;
+                    return <Article edit={editMode} article={article} key={article.id} />;
                 })}
-            {user && <button onClick={toggleEdit}>{editWelcome ? "Save" : "Edit"}</button>}
-            {user && editWelcome && <button onClick={addArticle}>Add Article</button>}
+            {user && <button onClick={toggleEditMode}>{editMode ? "Save" : "Edit"}</button>}
+            {user && editMode && <button onClick={addArticle}>Add Article</button>}
         </section>
     );
 }

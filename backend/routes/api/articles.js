@@ -40,10 +40,11 @@ router.put(
             },
         });
 
-        await article.update({
-            text,
-            imageLink,
-        });
+        if (article)
+            await article.update({
+                text,
+                imageLink,
+            });
 
         return res.json(article);
     })

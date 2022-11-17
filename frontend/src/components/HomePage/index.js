@@ -28,6 +28,10 @@ function HomePage() {
     };
 
     useEffect(() => {
+        console.log("ARTICLES", articles);
+    }, [articles]);
+
+    useEffect(() => {
         if (editWelcome) toggleEdit();
     }, [user]);
 

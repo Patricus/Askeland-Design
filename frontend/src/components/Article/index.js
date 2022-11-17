@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateArticle } from "../../store/articles";
+import { updateArticle, deleteArticle } from "../../store/articles";
 
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;
@@ -16,6 +16,11 @@ function Article({ edit, article }) {
         setFirstLoad(false);
     }, [edit]);
 
+    const removeArticle = () => {
+        console.log("TEST");
+        dispatch(deleteArticle(id));
+    };
+
     const CHANGE_IMAGE_BTN_STYLES = {
         display: "block",
     };
@@ -29,6 +34,7 @@ function Article({ edit, article }) {
                         {imageLink ? `Change Image` : `Add Image`}
                     </button>
                     <textarea value={text} onChange={e => setText(e.target.value)} />
+                    <button onClick={removeArticle}>Delete Article</button>
                 </>
             ) : (
                 <>

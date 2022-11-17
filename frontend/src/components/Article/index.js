@@ -5,10 +5,13 @@ import { updateArticle } from "../../store/articles";
 function Article({ edit, article }) {
     const { id, text, image_link } = article;
     const [editText, setEditText] = useState(text);
+    const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!edit) dispatch(updateArticle({ id, text: editText, image_link }));
+        if (!edit && !firstLoad) dispatch(updateArticle({ id, text: editText, image_link }));
+
+        setFirstLoad(false);
     }, [edit]);
 
     return (

@@ -3,13 +3,14 @@ import { useDispatch } from "react-redux";
 import { updateArticle } from "../../store/articles";
 
 function Article({ edit, article }) {
-    const { id, text, imageLink } = article;
+    const { id, text, imageLink, projectId } = article;
     const [editText, setEditText] = useState(text);
     const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!edit && !firstLoad) dispatch(updateArticle({ id, text: editText, imageLink }));
+        if (!edit && !firstLoad)
+            dispatch(updateArticle({ id, text: editText, imageLink, projectId }));
 
         setFirstLoad(false);
     }, [edit]);

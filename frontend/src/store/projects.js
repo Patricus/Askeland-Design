@@ -146,13 +146,13 @@ const projectReducer = (state = {}, { type, payload }) => {
         case UPDATE_ARTICLE:
         case DELETE_ARTICLE:
             const articleState = { ...state };
-            articleState.projects[payload.projectId] = {
-                ...state.projects[payload.projectId],
-                articles: articleReducer(state.projects[payload.projectId].articles, {
+            articleState[payload.projectId].articles = articleReducer(
+                articleState[payload.projectId].articles,
+                {
                     type,
                     payload,
-                }),
-            };
+                }
+            );
 
         default:
             return state;

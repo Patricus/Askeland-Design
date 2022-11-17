@@ -3,20 +3,20 @@ import { useDispatch } from "react-redux";
 import { updateArticle } from "../../store/articles";
 
 function Article({ edit, article }) {
-    const { id, text, image_link } = article;
+    const { id, text, imageLink } = article;
     const [editText, setEditText] = useState(text);
     const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!edit && !firstLoad) dispatch(updateArticle({ id, text: editText, image_link }));
+        if (!edit && !firstLoad) dispatch(updateArticle({ id, text: editText, imageLink }));
 
         setFirstLoad(false);
     }, [edit]);
 
     return (
         <article>
-            {image_link && <img src={image_link} alt="" />}
+            {imageLink && <img src={imageLink} alt="" />}
             {edit ? (
                 <textarea value={editText} onChange={e => setEditText(e.target.value)} />
             ) : (

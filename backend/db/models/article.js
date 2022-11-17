@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Article.belongsTo(models.Project, {
-                foreignKey: "project_id",
+                foreignKey: "projectId",
             });
         }
     }
     Article.init(
         {
-            project_id: DataTypes.INTEGER,
+            projectId: DataTypes.INTEGER,
             text: DataTypes.TEXT,
-            image_link: DataTypes.STRING,
+            imageLink: DataTypes.STRING,
         },
         {
             sequelize,

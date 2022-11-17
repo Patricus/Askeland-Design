@@ -8,7 +8,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            project_id: {
+            projectId: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
                 references: {
@@ -19,7 +19,7 @@ module.exports = {
             text: {
                 type: Sequelize.TEXT,
             },
-            image_link: {
+            imageLink: {
                 type: Sequelize.STRING,
             },
             createdAt: {

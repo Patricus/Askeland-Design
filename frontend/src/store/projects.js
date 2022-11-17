@@ -142,9 +142,12 @@ const projectReducer = (state = {}, { type, payload }) => {
             delete deleteProjState[payload];
             return deleteProjState;
 
-        case NEW_ARTICLE || UPDATE_ARTICLE || DELETE_ARTICLE:
-            return {
-                ...state,
+        case NEW_ARTICLE:
+        case UPDATE_ARTICLE:
+        case DELETE_ARTICLE:
+            const articleState = { ...state };
+            articleState.projects[payload.projectId] = {
+                ...state.projects[payload.projectId],
                 articles: articleReducer(state.projects[payload.projectId].articles, {
                     type,
                     payload,

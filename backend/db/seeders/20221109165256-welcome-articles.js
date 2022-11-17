@@ -6,9 +6,9 @@ module.exports = {
             "Articles",
             [
                 {
-                    project_id: 1,
+                    projectId: 1,
                     text: "Hello and welcome to Askeland Design.",
-                    image_link: "",
+                    imageLink: "",
                 },
             ],
             {}

@@ -1,9 +1,15 @@
+import articleReducer from "./articles";
 import { csrfFetch } from "./csrf";
 
 const GET_PROJECTS = "projects/getProjects";
 const NEW_PROJECT = "projects/newProject";
 const UPDATE_PROJECT = "projects/editProject";
 const DELETE_PROJECT = "projects/deleteProject";
+
+//To forward to articlesReducer
+const NEW_ARTICLE = "articles/newArticle";
+const UPDATE_ARTICLE = "articles/editArticle";
+const DELETE_ARTICLE = "articles/deleteArticle";
 
 const storeProjects = projects => {
     return {
@@ -135,6 +141,15 @@ const projectReducer = (state = {}, { type, payload }) => {
             const deleteProjState = { ...state };
             delete deleteProjState[payload];
             return deleteProjState;
+
+        case NEW_ARTICLE || UPDATE_ARTICLE || DELETE_ARTICLE:
+            return {
+                ...state,
+                articles: articleReducer(state.projects[payload.projectId].articles, {
+                    type,
+                    payload,
+                }),
+            };
 
         default:
             return state;

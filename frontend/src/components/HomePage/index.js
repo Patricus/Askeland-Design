@@ -28,6 +28,10 @@ function HomePage() {
     };
 
     useEffect(() => {
+        if (editWelcome) toggleEdit();
+    }, [user]);
+
+    useEffect(() => {
         setEditTitle(title);
     }, [title]);
 

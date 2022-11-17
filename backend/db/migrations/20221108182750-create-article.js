@@ -18,9 +18,11 @@ module.exports = {
             },
             text: {
                 type: Sequelize.TEXT,
+                defaultValue: "",
             },
             imageLink: {
                 type: Sequelize.STRING,
+                defaultValue: "",
             },
             createdAt: {
                 allowNull: false,

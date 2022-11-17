@@ -153,6 +153,7 @@ const projectReducer = (state = {}, { type, payload }) => {
                     payload,
                 }
             );
+            return articleState;
 
         default:
             return state;

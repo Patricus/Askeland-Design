@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateArticle, deleteArticle } from "../../store/articles";
+import { deleteArticle, updateArticle } from "../../store/articles";
 
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;
@@ -18,7 +18,7 @@ function Article({ edit, article }) {
 
     const removeArticle = () => {
         console.log("TEST");
-        dispatch(deleteArticle(id));
+        dispatch(deleteArticle({ id, projectId }));
     };
 
     const CHANGE_IMAGE_BTN_STYLES = {

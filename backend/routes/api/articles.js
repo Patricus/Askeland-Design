@@ -57,13 +57,10 @@ router.delete(
     asyncHandler(async (req, res) => {
         const id = req.params.id;
 
-        Article.destroy({
-            where: {
-                id,
-            },
-        });
+        const article = await Article.findByPk(id);
 
-        return res.status(200);
+        await article.destroy();
+        return res.json(article);
     })
 );
 

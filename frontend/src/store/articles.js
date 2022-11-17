@@ -71,24 +71,27 @@ export const updateArticle = article => async dispatch => {
     }
 };
 
-export const deleteArticle = articleId => async dispatch => {
-    const res = await csrfFetch(`/api/articles/${articleId}/`, {
-        method: "DELETE",
-    });
-
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(storeDeleteArticle(articleId));
-        return null;
-    } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
+export const deleteArticle =
+    ({ id }) =>
+    async dispatch => {
+        console.log("TEST-STORE1");
+        const res = await csrfFetch(`/api/articles/${id}/`, {
+            method: "DELETE",
+        });
+        console.log("TEST-STORE2");
+        if (res.ok) {
+            const data = await res.json();
+            dispatch(storeDeleteArticle(data));
+            return null;
+        } else if (res.status < 500) {
+            const data = await res.json();
+            if (data.errors) {
+                return data.errors;
+            }
+        } else {
+            return ["An error occurred. Please try again."];
         }
-    } else {
-        return ["An error occurred. Please try again."];
-    }
-};
+    };
 
 const articleReducer = (state = {}, { type, payload }) => {
     switch (type) {
@@ -106,7 +109,7 @@ const articleReducer = (state = {}, { type, payload }) => {
 
         case DELETE_ARTICLE:
             const deleteProjState = { ...state };
-            delete deleteProjState[payload];
+            delete deleteProjState[payload.id];
             return deleteProjState;
 
         default:

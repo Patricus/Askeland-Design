@@ -74,10 +74,11 @@ export const updateArticle = article => async dispatch => {
 export const deleteArticle =
     ({ id }) =>
     async dispatch => {
+        console.log("TEST-STORE1");
         const res = await csrfFetch(`/api/articles/${id}/`, {
             method: "DELETE",
         });
-
+        console.log("TEST-STORE2");
         if (res.ok) {
             const data = await res.json();
             dispatch(storeDeleteArticle(data));

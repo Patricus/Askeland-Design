@@ -17,7 +17,6 @@ function Article({ edit, article }) {
     }, [edit]);
 
     const removeArticle = () => {
-        console.log("TEST");
         dispatch(deleteArticle({ id, projectId }));
     };
 

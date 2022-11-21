@@ -20,7 +20,7 @@ function HomePage() {
             dispatch(updateProject({ id: 1, title: editTitle }));
         }
 
-        dispatch(setEditWelcome((editWelcome = () => !editWelcome)));
+        setEditWelcome(editWelcome => !editWelcome);
     };
 
     const addArticle = () => {

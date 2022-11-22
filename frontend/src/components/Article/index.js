@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
 import { useDispatch } from "react-redux";
 import { deleteArticle, updateArticle } from "../../store/articles";
+import "react-quill/dist/quill.snow.css";
+import parse from "html-react-parser";
 
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;
@@ -9,6 +12,16 @@ function Article({ edit, article }) {
 
     const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();
+
+    const quillModules = {
+        toolbar: [
+            [{ header: [2, 3, 4] }],
+            ["bold", "italic", "underline", "strike", "blockquote"],
+            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+            ["link", "image"],
+            ["clean"],
+        ],
+    };
 
     useEffect(() => {
         if (!edit && !firstLoad) dispatch(updateArticle({ id, text: text, imageLink, projectId }));
@@ -32,13 +45,13 @@ function Article({ edit, article }) {
                     <button style={CHANGE_IMAGE_BTN_STYLES}>
                         {imageLink ? `Change Image` : `Add Image`}
                     </button>
-                    <textarea value={text} onChange={e => setText(e.target.value)} />
+                    <ReactQuill value={text} onChange={setText} modules={quillModules} />
                     <button onClick={removeArticle}>Delete Article</button>
                 </>
             ) : (
                 <>
                     {imageLink && <img src={imageLink} alt="" />}
-                    <p>{text}</p>
+                    {parse(text)}
                 </>
             )}
         </article>

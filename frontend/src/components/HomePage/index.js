@@ -40,12 +40,13 @@ function HomePage() {
             <article>
                 {editWelcome ? (
                     <input
+                        className="titleText"
                         type="text"
                         value={editTitle}
                         onChange={e => setEditTitle(e.target.value)}
                     />
                 ) : (
-                    <h2>{title}</h2>
+                    <h2 className="titleText">{title}</h2>
                 )}
             </article>
             {articles &&

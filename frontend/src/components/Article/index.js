@@ -15,13 +15,13 @@ function Article({ edit, article }) {
 
     const quillModules = {
         toolbar: [
-            [{ header: [2, 3, 4, 5, 6, false] }],
+            // [{ header: [2, 3, 4, 5, 6, false] }],
+            [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+            [{ font: [] }],
             ["bold", "italic", "underline", "strike", "blockquote"],
             [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-            [{ size: ["small", false, "large", "huge"] }], // custom dropdown
 
             [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-            [{ font: [] }],
             [{ align: [] }],
             ["link", "image"],
             ["clean"],

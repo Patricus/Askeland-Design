@@ -4,7 +4,8 @@
 }
 
 .sidebar {
-    width: 20%;
+    width: 20vw;
+    max-width: 250px;
     min-height: 100vh;
 }
 
@@ -15,11 +16,11 @@
 }
 
 .title h1 {
-    font-size: calc(20px + 0.2vw);
+    font-size: clamp(22px, 16px + 0.5vw, 25px);
 }
 
 .title p {
-    font-size: calc(12px + 0.2vw);
+    font-size: clamp(14px, 12px + 0.2vw, 16px);
 }
 
 .mobile-menu {
@@ -28,7 +29,7 @@
 
 @media (max-width: 1120px) {
     .title h1 {
-        font-size: calc(13px + 0.6vw);
+        font-size: clamp(18px, 6px + 1.3vw, 22px);
     }
     .title p {
         font-size: calc(7px + 0.5vw);
@@ -37,7 +38,7 @@
 
 @media (max-width: 955px) {
     .title h1 {
-        font-size: calc(13px + 0.5vw);
+        font-size: clamp(17.4px, 5px + 2vw, 18px);
     }
     .title p {
         font-size: calc(7px + 0.4vw);
@@ -49,16 +50,15 @@
         position: -webkit-sticky;
         position: sticky;
         top: 0;
-        width: 96vw;
         min-height: 0;
         background-color: white;
-        margin-left: 10px;
+        margin: 0 10px;
     }
     .logo {
         display: none;
     }
     .title h1 {
-        font-size: calc(16px + 0.7vw);
+        font-size: calc(16px + 1vw);
     }
     .slider > nav {
         display: none;
@@ -67,6 +67,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        width: calc(100vw - 20px);
     }
     .mobile-menu {
         display: block;

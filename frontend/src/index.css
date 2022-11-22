@@ -11,10 +11,10 @@ body {
     min-height: 100vh;
 }
 
-#root > :not(.sidebar) {
-    margin-top: 10px;
+.main {
     max-width: 1080px;
-    margin-left: 10px;
+    margin: 10px;
+    width: 80vw;
 }
 
 img {
@@ -25,5 +25,8 @@ img {
 @media (max-width: 880px) {
     #root {
         flex-direction: column;
+    }
+    .main {
+        width: auto;
     }
 }

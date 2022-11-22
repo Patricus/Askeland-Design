@@ -36,7 +36,7 @@ function HomePage() {
     }, [title]);
 
     return (
-        <section>
+        <section className="main">
             <article>
                 {editWelcome ? (
                     <input

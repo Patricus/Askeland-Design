@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         {
             projectId: DataTypes.INTEGER,
             text: DataTypes.TEXT,
-            imageLink: DataTypes.STRING,
         },
         {
             sequelize,

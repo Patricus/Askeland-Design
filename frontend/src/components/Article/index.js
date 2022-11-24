@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { useDispatch } from "react-redux";
 import { deleteArticle, updateArticle } from "../../store/articles";
-import "react-quill/dist/quill.snow.css";
 import parse from "html-react-parser";
+import "react-quill/dist/quill.snow.css";
 
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;
@@ -28,8 +28,27 @@ function Article({ edit, article }) {
         ],
     };
 
+    const imageHandler = async () => {
+        const input = document.createElement("input");
+
+        input.setAttribute("type", "file");
+        input.setAttribute("accept", "image/*");
+        input.click();
+
+        input.onchange = async () => {
+            const file = input.files[0];
+            const formData = new FormData();
+
+            formData.append("image", file);
+
+            const fileName = file.name;
+
+            // const res = await this.uploadFiles(file, fileName, quillObj);
+        };
+    };
+
     useEffect(() => {
-        if (!edit && !firstLoad) dispatch(updateArticle({ id, text: text, imageLink, projectId }));
+        if (!edit && !firstLoad) dispatch(updateArticle({ id, text, projectId }));
 
         setFirstLoad(false);
     }, [edit]);
@@ -38,26 +57,20 @@ function Article({ edit, article }) {
         dispatch(deleteArticle({ id, projectId }));
     };
 
-    const CHANGE_IMAGE_BTN_STYLES = {
-        display: "block",
-    };
-
     return (
         <article>
             {edit ? (
                 <>
-                    {imageLink && <img src={imageLink} alt="" />}
-                    <button style={CHANGE_IMAGE_BTN_STYLES}>
-                        {imageLink ? `Change Image` : `Add Image`}
-                    </button>
-                    <ReactQuill value={text} onChange={setText} modules={quillModules} />
+                    <ReactQuill
+                        value={text}
+                        onChange={setText}
+                        modules={quillModules}
+                        handlers={{ image: imageHandler }}
+                    />
                     <button onClick={removeArticle}>Delete Article</button>
                 </>
             ) : (
-                <>
-                    {imageLink && <img src={imageLink} alt="" />}
-                    {parse(text)}
-                </>
+                <>{parse(text)}</>
             )}
         </article>
     );

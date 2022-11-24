@@ -14,12 +14,11 @@ router.post(
     "/",
     requireAuth,
     asyncHandler(async (req, res) => {
-        const { projectId, text, imageLink } = req.body;
+        const { projectId, text } = req.body;
 
         const article = await Article.create({
             projectId,
             text,
-            imageLink,
         });
 
         return res.json(article);
@@ -32,7 +31,7 @@ router.put(
     requireAuth,
     asyncHandler(async (req, res) => {
         const id = req.params.id;
-        const { text, imageLink } = req.body;
+        const { text } = req.body;
 
         const article = await Article.findOne({
             where: {
@@ -43,7 +42,6 @@ router.put(
         if (article)
             await article.update({
                 text,
-                imageLink,
             });
 
         return res.json(article);

@@ -20,10 +20,6 @@ module.exports = {
                 type: Sequelize.TEXT,
                 defaultValue: "",
             },
-            imageLink: {
-                type: Sequelize.STRING,
-                defaultValue: "",
-            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,

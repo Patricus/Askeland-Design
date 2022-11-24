@@ -8,7 +8,6 @@ module.exports = {
                 {
                     projectId: 1,
                     text: "Hello and welcome to Askeland Design.",
-                    imageLink: "",
                 },
             ],
             {}

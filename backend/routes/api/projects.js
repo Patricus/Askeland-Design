@@ -74,13 +74,13 @@ router.delete(
     asyncHandler(async (req, res) => {
         const id = req.params.id;
 
-        Project.destroy({
+        const project = Project.destroy({
             where: {
                 id,
             },
         });
 
-        return res.status(200);
+        return res.json(project);
     })
 );
 

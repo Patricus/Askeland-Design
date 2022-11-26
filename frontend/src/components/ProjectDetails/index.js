@@ -12,15 +12,7 @@ function ProjectDetails() {
     const user = useSelector(state => state.session.user);
     const [editProject, setEditProject] = useState(false);
     const [editTitle, setEditTitle] = useState(project.title);
-    const [editDate, setEditDate] = useState(
-        project.date
-            .toLocaleString({
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            })
-            .split("T")[0]
-    );
+    const [editDate, setEditDate] = useState(project.date);
 
     useEffect(() => console.log("editDate", editDate), [editDate]);
 
@@ -59,13 +51,7 @@ function ProjectDetails() {
                     ) : (
                         <>
                             <h2>{project.title}</h2>
-                            <p>
-                                {new Date(project.date).toLocaleString("en-US", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                })}
-                            </p>
+                            <p>{project.date}</p>
                         </>
                     )}
                 </article>

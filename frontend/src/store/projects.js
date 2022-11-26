@@ -98,7 +98,6 @@ export const deleteProject = projectId => async dispatch => {
     });
 
     if (res.ok) {
-        const data = await res.json();
         dispatch(storeDeleteProject(projectId));
         return null;
     } else if (res.status < 500) {

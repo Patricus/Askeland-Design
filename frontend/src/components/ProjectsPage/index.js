@@ -22,7 +22,7 @@ function ProjectsPage() {
                 Object.values(projects)
                     .slice(1)
                     .map(project => {
-                        return <ProjectTile {...project} key={project.id} />;
+                        return <ProjectTile project={project} user={user} key={project.id} />;
                     })}
             {user && <button onClick={newProject}>Create Project</button>}
         </section>

@@ -1,7 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteProject } from "../../store/projects";
 
-function ProjectTile({ id, title, date, articles }) {
+function ProjectTile({ project, user }) {
+    const { id, title, date, articles } = project;
+    const dispatch = useDispatch();
+
+    const removeProject = id => {
+        dispatch(deleteProject(id));
+    };
     return (
         <section>
             <Link to={`/projects/${id}`}>
@@ -16,6 +24,7 @@ function ProjectTile({ id, title, date, articles }) {
                     </p>
                 </article>
             </Link>
+            {user && <button onClick={() => removeProject(project.id)}>Delete Project</button>}
         </section>
     );
 }

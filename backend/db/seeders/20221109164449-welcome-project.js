@@ -7,7 +7,7 @@ module.exports = {
             [
                 {
                     title: "Welcome",
-                    date: new Date("2022 - 11 - 23"),
+                    date: new Date(),
                 },
             ],
             {}

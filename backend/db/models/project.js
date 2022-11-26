@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Project.init(
         {
             title: DataTypes.STRING(60),
-            date: DataTypes.DATE,
+            date: DataTypes.DATEONLY,
         },
         {
             sequelize,

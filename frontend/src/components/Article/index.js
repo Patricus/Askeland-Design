@@ -8,7 +8,6 @@ import "react-quill/dist/quill.snow.css";
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;
     const [text, setText] = useState(articleText);
-    const [imageLink, setImageLink] = useState(articleImage);
 
     const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();

@@ -7,7 +7,7 @@ module.exports = {
             [
                 {
                     title: "Welcome",
-                    date: Sequelize.fn("now"),
+                    date: new Date("2022 - 11 - 23"),
                 },
             ],
             {}

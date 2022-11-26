@@ -60,6 +60,7 @@ router.put(
 
         await project.update({
             title,
+            date,
         });
 
         return res.json(project);

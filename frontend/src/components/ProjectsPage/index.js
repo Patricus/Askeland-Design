@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProjects } from "../../store/projects";
+import { createProject, getProjects } from "../../store/projects";
 import ProjectTile from "../ProjectTile";
 
 function ProjectsPage() {
     const projects = useSelector(state => state.projects);
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getProjects());
     }, [dispatch]);
+
+    const newProject = () => {
+        dispatch(createProject({ title: "", date: new Date() }));
+    };
 
     return (
         <section>
@@ -20,6 +24,7 @@ function ProjectsPage() {
                     .map(project => {
                         return <ProjectTile {...project} key={project.id} />;
                     })}
+            {user && <button onClick={newProject}>Create Project</button>}
         </section>
     );
 }

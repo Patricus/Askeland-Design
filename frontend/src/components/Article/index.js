@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteArticle, updateArticle } from "../../store/articles";
 import parse from "html-react-parser";
 import "react-quill/dist/quill.snow.css";
+import "./articles.css";
 
 function Article({ edit, article }) {
     const { id, projectId, text: articleText, imageLink: articleImage } = article;

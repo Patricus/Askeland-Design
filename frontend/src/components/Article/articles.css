@@ -1,0 +1,62 @@
+.ql-editor .ql-size-small {
+    font-size: 0.75em;
+}
+
+.ql-size-large {
+    font-size: 1.5em;
+}
+
+.ql-size-huge {
+    font-size: 2.5em;
+}
+
+blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+}
+
+.ql-align-center {
+    text-align: center;
+}
+
+.ql-align-right {
+    text-align: right;
+}
+
+.ql-align-justify {
+    text-align: justify;
+}
+
+.ql-indent-1:not(.ql-direction-rtl) {
+    padding-left: 3em;
+}
+
+.ql-indent-2:not(.ql-direction-rtl) {
+    padding-left: 6em;
+}
+
+.ql-indent-3:not(.ql-direction-rtl) {
+    padding-left: 9em;
+}
+
+.ql-indent-4:not(.ql-direction-rtl) {
+    padding-left: 12em;
+}
+
+.ql-indent-5:not(.ql-direction-rtl) {
+    padding-left: 15em;
+}
+
+.ql-indent-6:not(.ql-direction-rtl) {
+    padding-left: 18em;
+}
+
+.ql-indent-7:not(.ql-direction-rtl) {
+    padding-left: 21em;
+}
+
+.ql-indent-8:not(.ql-direction-rtl) {
+    padding-left: 24em;
+}

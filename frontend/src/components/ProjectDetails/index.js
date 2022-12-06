@@ -16,8 +16,6 @@ function ProjectDetails() {
     const [editTitle, setEditTitle] = useState(project.title);
     const [editDate, setEditDate] = useState(project.date);
 
-    useEffect(() => console.log("editDate", editDate), [editDate]);
-
     const toggleEditModeMode = () => {
         if (editProject) {
             //save

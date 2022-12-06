@@ -15,13 +15,7 @@ function ProjectTile({ project, user }) {
             <Link to={`/projects/${id}`}>
                 <article>
                     <h2>{title}</h2>
-                    <p>
-                        {new Date(date).toLocaleString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
-                    </p>
+                    <p>{new Date(date).toUTCString().slice(0, -13)}</p>
                 </article>
             </Link>
             {user && <button onClick={() => removeProject(project.id)}>Delete Project</button>}

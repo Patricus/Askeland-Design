@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { createArticle } from "../../store/articles";
 import { updateProject } from "../../store/projects";
 import Article from "../Article";
 
@@ -9,6 +10,7 @@ function ProjectDetails() {
     const dispatch = useDispatch();
 
     const project = useSelector(state => state.projects[projectId]);
+    const articles = useSelector(state => state.projects[projectId].articles);
     const user = useSelector(state => state.session.user);
     const [editProject, setEditProject] = useState(false);
     const [editTitle, setEditTitle] = useState(project.title);
@@ -31,6 +33,10 @@ function ProjectDetails() {
         setEditProject(editProject => !editProject);
     };
 
+    const addArticle = () => {
+        dispatch(createArticle({ projectId, text: "New Article" }));
+    };
+
     return (
         <section>
             {project && (
@@ -51,17 +57,17 @@ function ProjectDetails() {
                     ) : (
                         <>
                             <h2>{project.title}</h2>
-                            <p>{project.date}</p>
+                            <p>{new Date(project.date).toUTCString().slice(0, -13)}</p>
                         </>
                     )}
                 </article>
             )}
-            {project &&
-                project.articles &&
-                Object.values(project.articles).map(article => {
+            {articles &&
+                Object.values(articles).map(article => {
                     return <Article edit={editProject} article={article} key={article.id} />;
                 })}
             {user && <button onClick={toggleEditModeMode}>{editProject ? `Save` : `Edit`}</button>}
+            {user && editProject && <button onClick={addArticle}> + </button>}
         </section>
     );
 }

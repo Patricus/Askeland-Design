@@ -13,7 +13,7 @@ function ProjectsPage() {
     }, [dispatch]);
 
     const newProject = () => {
-        dispatch(createProject({ title: "", date: new Date() }));
+        dispatch(createProject({ title: "New Project", date: new Date() }));
     };
 
     return (

@@ -15,7 +15,6 @@ function Article({ edit, article }) {
 
     const quillModules = {
         toolbar: [
-            // [{ header: [2, 3, 4, 5, 6, false] }],
             [{ size: ["small", false, "large", "huge"] }], // custom dropdown
             [{ font: [] }],
             ["bold", "italic", "underline", "strike", "blockquote"],
@@ -24,7 +23,6 @@ function Article({ edit, article }) {
             [{ color: [] }, { background: [] }], // dropdown with defaults from theme
             [{ align: [] }],
             ["link", "image"],
-            ["clean"],
         ],
     };
 

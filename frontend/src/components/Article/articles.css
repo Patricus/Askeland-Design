@@ -60,3 +60,33 @@ blockquote {
 .ql-indent-8:not(.ql-direction-rtl) {
     padding-left: 24em;
 }
+
+.ql-picker.ql-font span.ql-picker-label::before,
+.ql-picker.ql-font span.ql-picker-item::before {
+    font-family: "Nunito Sans", monospace;
+    content: "Nunito Sans" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="serif"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="serif"]::before {
+    font-family: "IBM Plex Serif", serif;
+    content: "Plex Serif" !important;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="monospace"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="monospace"]::before {
+    font-family: "IBM Plex Sans", sans-serif;
+    content: "Plex Sans" !important;
+}
+
+.ql-font-monospace {
+    font-family: "IBM Plex Sans", sans-serif !important;
+}
+
+.ql-font-serif {
+    font-family: "IBM Plex Serif", serif !important;
+}
+
+.ql-snow {
+    font-family: "Nunito Sans", monospace;
+}

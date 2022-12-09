@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import { useDispatch } from "react-redux";
 import { deleteArticle, updateArticle } from "../../store/articles";
 import parse from "html-react-parser";
@@ -15,16 +15,31 @@ function Article({ edit, article }) {
 
     const quillModules = {
         toolbar: [
-            [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-            [{ font: [] }],
+            [{ size: ["small", false, "large", "huge"] }, { font: [] }],
             ["bold", "italic", "underline", "strike", "blockquote"],
             [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-
-            [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+            [{ color: [] }, { background: [] }],
             [{ align: [] }],
             ["link", "image"],
         ],
     };
+
+    const quillFormats = [
+        "header",
+        "font",
+        "size",
+        "bold",
+        "italic",
+        "underline",
+        "strike",
+        "blockquote",
+        "list",
+        "bullet",
+        "indent",
+        "link",
+        "image",
+        "video",
+    ];
 
     const imageHandler = async () => {
         const input = document.createElement("input");
@@ -63,7 +78,9 @@ function Article({ edit, article }) {
                         value={text}
                         onChange={setText}
                         modules={quillModules}
+                        formats={quillFormats}
                         handlers={{ image: imageHandler }}
+                        placeholder="Type text here"
                     />
                     <button onClick={removeArticle}>Delete Article</button>
                 </>

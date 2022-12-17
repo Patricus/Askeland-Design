@@ -24,24 +24,8 @@ function Article({ edit, article }) {
         ],
     };
 
-    const quillFormats = [
-        "header",
-        "font",
-        "size",
-        "bold",
-        "italic",
-        "underline",
-        "strike",
-        "blockquote",
-        "list",
-        "bullet",
-        "indent",
-        "link",
-        "image",
-        "video",
-    ];
-
     const imageHandler = async () => {
+        console.log("IMAGE_HANDLER");
         const input = document.createElement("input");
 
         input.setAttribute("type", "file");
@@ -78,7 +62,6 @@ function Article({ edit, article }) {
                         value={text}
                         onChange={setText}
                         modules={quillModules}
-                        formats={quillFormats}
                         handlers={{ image: imageHandler }}
                         placeholder="Type text here"
                     />

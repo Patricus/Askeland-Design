@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import { useDispatch } from "react-redux";
 import { deleteArticle, updateArticle } from "../../store/articles";
@@ -12,17 +12,6 @@ function Article({ edit, article }) {
 
     const [firstLoad, setFirstLoad] = useState(true);
     const dispatch = useDispatch();
-
-    const quillModules = {
-        toolbar: [
-            [{ size: ["small", false, "large", "huge"] }, { font: [] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-            [{ color: [] }, { background: [] }],
-            [{ align: [] }],
-            ["link", "image"],
-        ],
-    };
 
     const imageHandler = async () => {
         console.log("IMAGE_HANDLER");
@@ -44,6 +33,25 @@ function Article({ edit, article }) {
         };
     };
 
+    const quillModules = useMemo(
+        () => ({
+            toolbar: {
+                container: [
+                    [{ size: ["small", false, "large", "huge"] }, { font: [] }],
+                    ["bold", "italic", "underline", "strike", "blockquote"],
+                    [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+                    [{ color: [] }, { background: [] }],
+                    [{ align: [] }],
+                    ["link", "image"],
+                ],
+                handlers: {
+                    image: imageHandler,
+                },
+            },
+        }),
+        []
+    );
+
     useEffect(() => {
         if (!edit && !firstLoad) dispatch(updateArticle({ id, text, projectId }));
 
@@ -62,7 +70,6 @@ function Article({ edit, article }) {
                         value={text}
                         onChange={setText}
                         modules={quillModules}
-                        handlers={{ image: imageHandler }}
                         placeholder="Type text here"
                     />
                     <button onClick={removeArticle}>Delete Article</button>

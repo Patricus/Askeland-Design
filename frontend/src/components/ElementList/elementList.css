@@ -1,0 +1,31 @@
+#elementList {
+    position: absolute;
+    bottom: 75%;
+    left: 75%;
+    width: fit-content;
+    padding: 5px 10px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    display: grid;
+    justify-content: center;
+}
+
+#elementList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: max-content;
+}
+
+#elementList ul > li > button {
+    width: 100%;
+    background-color: white;
+    border: 1px grey solid;
+    border-radius: 3px;
+}
+
+#elementList ul > li > button:hover {
+    background-color: rgb(252, 252, 252);
+    border: 1px black solid;
+}

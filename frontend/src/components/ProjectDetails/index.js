@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { createArticle } from "../../store/articles";
 import { updateProject } from "../../store/projects";
+import AddToProjectButton from "../AddToProjectButton";
 import Article from "../Article";
+import "./ProjectDetails.css";
 
 function ProjectDetails() {
     const { projectId } = useParams();
@@ -31,12 +32,8 @@ function ProjectDetails() {
         setEditProject(editProject => !editProject);
     };
 
-    const addArticle = () => {
-        dispatch(createArticle({ projectId, text: "New Article" }));
-    };
-
     return (
-        <section>
+        <section id="projectDetail">
             {project && (
                 <article>
                     {editProject ? (
@@ -64,8 +61,12 @@ function ProjectDetails() {
                 Object.values(articles).map(article => {
                     return <Article edit={editProject} article={article} key={article.id} />;
                 })}
-            {user && <button onClick={toggleEditModeMode}>{editProject ? `Save` : `Edit`}</button>}
-            {user && editProject && <button onClick={addArticle}> + </button>}
+            {user && (
+                <button style={{ marginTop: "10px" }} onClick={toggleEditModeMode}>
+                    {editProject ? `Save` : `Edit`}
+                </button>
+            )}
+            {user && editProject && <AddToProjectButton projectId={projectId} />}
         </section>
     );
 }

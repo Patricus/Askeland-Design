@@ -1,0 +1,9 @@
+#elementListText {
+    display: inline-block;
+    transition: all 300ms ease-in-out;
+}
+
+#elementListText.open {
+    transform: rotate(135deg);
+    color: darkred;
+}

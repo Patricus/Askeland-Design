@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
                 hooks: true,
             });
             Project.hasMany(models.Picture, {
-                as: "articles",
+                as: "pictures",
                 foreignKey: "projectId",
                 onDelete: "cascade",
                 hooks: true,

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createArticle } from "../../store/articles";
 import { updateProject } from "../../store/projects";
+import AddToProjectButton from "../AddToProjectButton";
 import Article from "../Article";
 
 function HomePage() {
@@ -54,7 +55,7 @@ function HomePage() {
                     return <Article edit={editWelcome} article={article} key={article.id} />;
                 })}
             {user && <button onClick={toggleEditModeMode}>{editWelcome ? "Save" : "Edit"}</button>}
-            {user && editWelcome && <button onClick={addArticle}>Add Article</button>}
+            {user && editWelcome && <AddToProjectButton projectId={1} />}
         </section>
     );
 }

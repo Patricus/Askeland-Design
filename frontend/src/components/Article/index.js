@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import "./articles.css";
 
 function Article({ edit, article }) {
-    const { id, projectId, text: articleText, imageLink: articleImage } = article;
+    const { id, projectId, text: articleText } = article;
     const [text, setText] = useState(articleText);
 
     const [firstLoad, setFirstLoad] = useState(true);
@@ -51,7 +51,7 @@ function Article({ edit, article }) {
         if (!edit && !firstLoad) dispatch(updateArticle({ id, text, projectId }));
 
         setFirstLoad(false);
-    }, [edit]);
+    }, [edit, dispatch, firstLoad, id, text, projectId]);
 
     const removeArticle = () => {
         dispatch(deleteArticle({ id, projectId }));

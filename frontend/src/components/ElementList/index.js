@@ -3,11 +3,17 @@ import { useDispatch } from "react-redux";
 import { createArticle } from "../../store/articles";
 import "./elementList.css";
 
-function ElementList({ projectId, setShowList }) {
+function ElementList({ projectId, toggleList }) {
     const dispatch = useDispatch();
+
     const addArticle = () => {
         dispatch(createArticle({ projectId, text: "New Article" }));
-        setShowList(false);
+        toggleList();
+    };
+
+    const addPicture = () => {
+        // dispatch(createPicture()) //Create store and backend
+        toggleList();
     };
 
     return (
@@ -17,7 +23,7 @@ function ElementList({ projectId, setShowList }) {
                     <button onClick={addArticle}>Text Article</button>
                 </li>
                 <li>
-                    <button>Single Picture</button>
+                    <button onClick={addPicture}>Single Picture</button>
                 </li>
             </ul>
         </section>

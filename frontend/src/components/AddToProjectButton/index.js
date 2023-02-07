@@ -19,7 +19,7 @@ function AddToProjectButton({ projectId }) {
             <button onClick={toggleList}>
                 <span id="elementListText"> + </span>
             </button>
-            {showList && <ElementList projectId={projectId} setShowList={setShowList} />}
+            {showList && <ElementList projectId={projectId} toggleList={toggleList} />}
         </span>
     );
 }

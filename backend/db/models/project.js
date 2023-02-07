@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: "cascade",
                 hooks: true,
             });
+            Project.hasMany(models.Picture, {
+                as: "articles",
+                foreignKey: "projectId",
+                onDelete: "cascade",
+                hooks: true,
+            });
         }
     }
     Project.init(
